@@ -1,15 +1,8 @@
 class Registrar
 
   def self.register(data)
-    if uid_exists?(data[:auth])
-      if current_user_uid_match?(data)
-        true
-      else
-        false
-      end
-    else
-      create_provider(data)
-    end
+    known_uid_for_this_user = (uid_exists?(data[:auth]) && current_user_uid_match?(data))
+    known_uid_for_this_user || create_provider(data)
   end
 
   private

@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   before_filter :check_user_logged_in, only: :index
 
   def landing_page
-    if current_user
-      redirect_to dashboard_path
-    end
+    
+    redirect_to dashboard_path if current_user
+
   end
 
   def current_user

@@ -23,6 +23,7 @@ class RunsController < ApplicationController
 
   def show
     @run = Run.find_by_id(params[:id])
+    @run = Run.find(params[:id])
   end
 
   def new

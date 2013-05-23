@@ -6,14 +6,15 @@ class Route < ActiveRecord::Base
   validates_presence_of :name, :path
 
   def path_points
-    JSON.parse(path).collect do |hash|
-      h = {}
+    # JSON.parse(path).collect do |hash|
+    #   h = {}
 
-      hash.each do |(key, value) |
-        h[key.to_sym] = value
-      end
+    #   hash.each do |(key, value) |
+    #     h[key.to_sym] = value
+    #   end
 
-      h
-    end
+    #   h
+    # end
+    HashWithIndifferentAccess.new( JSON.parse(path) )
   end
 end

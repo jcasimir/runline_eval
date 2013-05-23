@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
     if success
       redirect_to new_run_path, notice: "Successfully registered."
     else
-      flash[:error] = "There was an issue processing your request, try again"
+      flash[:error] = t('registration.error')
       render 'users/profile'
     end
   end
@@ -35,6 +35,7 @@ class RegistrationsController < ApplicationController
     end
   end
 
+private
   def get_runs
     Client::API.get_runs(current_user)
   end

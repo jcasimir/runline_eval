@@ -21,9 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def photo(size=:normal)
-    if @photo.nil?
-      @photo = {}
-    end
+    @photo ||= {}
 
     begin
       @photo[size] ||= twitter.user(name).profile_image_url(size)
@@ -63,8 +61,8 @@ class User < ActiveRecord::Base
   end
 
   def all_runs
-    r = runs
-    r = Run.where("organizer_id = ?", id)
+    #r = Run.where("organizer_id = ?", id)
+    r = Run.where(:organizer_id => id)
     r << runs
     r.flatten
   end
